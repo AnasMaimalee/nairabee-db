@@ -1,0 +1,292 @@
+<template>
+  <div class="nav-header">
+    <div class="top-header">
+      <div class="nairabee-logo">
+        <nuxt-link to="/"><img src="/Asset 1.png" alt=""></nuxt-link>
+      </div>
+      <div class="nav">
+        <div class="left-nav">
+          <ul>
+            <li><nuxt-link to="/" class="nav-link">Home</nuxt-link></li>
+            <li><nuxt-link to="/service" class="nav-link">Services</nuxt-link></li>
+            <li><nuxt-link to="/about" class="nav-link">About</nuxt-link></li>
+            <li><nuxt-link to="/contact" class="nav-link">Contact</nuxt-link></li>
+
+          </ul>
+        </div>
+
+        <div class="right-nav">
+          <ul>
+            <li><nuxt-link to="/login" class="nav-link">Sign In</nuxt-link></li>
+            <li><nuxt-link to="/register" class="nav-link">Get Started</nuxt-link></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="mobile-nav">
+        <div class="hamburger" @click="toggleMobileNav" :class="{ 'change': isMobileNavOpen }">
+          <div class="bar1" :class="{ 'change': isMobileNavOpen }"></div>
+          <div class="bar2" :class="{ 'change': isMobileNavOpen }"></div>
+          <div class="bar3" :class="{ 'change': isMobileNavOpen }"></div>
+        </div>
+        <nav class="nav-menu" v-if="isMobileNavOpen">
+          <div>
+            <ul>
+              <li @click="closeMbileNav"><nuxt-link to="/" class="nav-link" @click="closeMbileNav">Home</nuxt-link></li>
+              <li @click="closeMbileNav"><nuxt-link to="/service" class="nav-link"
+                  @click="closeMbileNav">Services</nuxt-link></li>
+              <li @click="closeMbileNav"><nuxt-link to="/about" class="nav-link"
+                  @click="closeMbileNav">About</nuxt-link></li>
+              <li @click="closeMbileNav"><nuxt-link to="/contact" class="nav-link"
+                  @click="closeMbileNav">Contact</nuxt-link></li>
+              <li @click="closeMbileNav"><nuxt-link to="/login" class="nav-link" @click="closeMbileNav">Sign
+                  In</nuxt-link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const isMobileNavOpen = ref(false);
+const isChaged = ref(false)
+const toggleMobileNav = (x) => {
+  isChaged.value = true
+  isMobileNavOpen.value = !isMobileNavOpen.value;
+}
+
+const closeMbileNav = () => {
+  console.log("close")
+  isMobileNavOpen.value = false
+}
+</script>
+
+<style scoped>
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  font-family: Montserrat;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  /* Increased shadow values */
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.toggle-nav-btn {
+  display: none;
+  /* Hide button by default */
+}
+
+.top-header {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nairabee-logo {
+  /* width: 25%; */
+}
+
+.nairabee-logo img {
+  /* width: 50px; */
+  height: 30px;
+  /* width: 50%;
+  max-width: 70%; */
+}
+
+/* Styles for navigation menu */
+.nav-menu {
+  display: none;
+  /* Additional styles for positioning the menu below the hamburger button */
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  /* Add a higher z-index value */
+}
+
+/* Show navigation menu when isMobileNavOpen is true */
+.nav-menu.show {
+  display: block;
+}
+
+
+.nav {
+  /* width: 65%; */
+  /* margin-top: 13px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-nav ul {
+  display: flex;
+}
+
+.left-nav {
+  /* width: 60%; */
+}
+
+.right-nav {
+  /* width: 30%; */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.right-nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.right-nav ul .nav-link {
+  background-color: #f17540;
+  color: white;
+  font-weight: bolder;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.right-nav ul .nav-link:hover {
+  background-color: white;
+  color: #f17540;
+  font-weight: bolder;
+  border-radius: 4px;
+  border: 1px solid #f17540;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+.left-nav ul .nav-link {
+  color: #383838;
+  padding: 8px 20px
+}
+
+.left-nav ul .nav-link:hover {
+  background-color: #f17540;
+  color: white;
+  border-radius: 4px;
+
+}
+
+
+@media only screen and (max-width: 830px) {
+
+  .nav {
+    display: none;
+  }
+
+  .top-header {
+    /* width: 100%; */
+    justify-content: space-between;
+  }
+
+  .nairabee-logo {
+    /* width: 55%; */
+  }
+
+  .nairabee-logo img {
+    width: 100%;
+  }
+
+  .mobile-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+  }
+
+  /* Styles for hamburger button */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 40px;
+    height: 3px;
+    background-color: #f17540;
+    transition: 0.4s;
+    margin: 3px 0;
+    /* Add margin to create spacing between bars */
+  }
+
+
+  .change .bar1 {
+    transform: translate(0, 9px) rotate(-45deg);
+  }
+
+  .change .bar2 {
+    opacity: 0;
+  }
+
+  .change .bar3 {
+    transform: translate(0, -9px) rotate(45deg);
+  }
+
+  /* Styles for navigation menu */
+  .nav-menu {
+    display: grid;
+    position: absolute;
+    background-color: #f17540;
+    top: 40px;
+    color: white;
+  }
+
+  .nav-link {
+    margin-top: 10px;
+    color: #383838;
+    padding: 5px;
+  }
+
+  .nuxt-link:hover {
+    background-color: #f17540;
+  }
+
+  /* Show navigation menu when isMobileNavOpen is true */
+  .nav-menu.show {
+    display: block;
+  }
+
+  .nav-menu ul {
+    color: white;
+    line-height: 25px;
+  }
+
+  .nav-menu ul li {
+  }
+
+
+  .nav-menu ul li:hover {
+    /* background-color: white; */
+    color: white;
+
+  }
+
+  .nav-header {
+    height: 40px;
+  }
+}
+</style>
