@@ -1,9 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ["@/assets/style/main.css"],
+  css: ["@/assets/main.css"],
   antd:{},
   modules: [
-    // "@nuxtjs/tailwindcss", 
+    "@nuxtjs/tailwindcss", 
     "@ant-design-vue/nuxt"]
 })
